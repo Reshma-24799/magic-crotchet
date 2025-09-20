@@ -3,11 +3,11 @@
 import { Link, useLocation } from "react-router-dom";
 import { ShoppingCart, Search, Menu, X } from "lucide-react";
 import { useState } from "react";
-// import { useCart } from "../context/CartContext";
+import { useCart } from "../context/CartContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // const { getTotalItems } = useCart();
+  const { getTotalItems } = useCart();
   const location = useLocation()
 
   const navigation = [
@@ -55,12 +55,12 @@ const Navbar = () => {
             
             <Link to="/cart" className="relative p-2 text-gray-600 hover:text-primary-500 transition-colors duration-200">
               <ShoppingCart className="w-5 h-5" />
-              {/* {getTotalItems() > 0 && (
+              {getTotalItems() > 0 && (
                 <span className="absolute -top-1 -right-1 bg-primary-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
                   {getTotalItems()}
                 </span>
                 )
-              } */}
+              }
             </Link>
 
             <button   

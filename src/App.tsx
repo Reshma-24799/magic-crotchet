@@ -3,11 +3,13 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import { CartProvider } from "./context/CartContext";
 
 function App() {
 
   return (
-   <div className="min-h-screen flex flex-col">
+    <CartProvider>
+      <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow">
           <Routes>
@@ -17,6 +19,8 @@ function App() {
         </main>
         <Footer />
     </div>
+    </CartProvider>
+   
   )
 }
 

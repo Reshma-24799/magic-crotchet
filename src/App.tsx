@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import { CartProvider } from "./context/CartContext";
+import Shop from "./pages/Shop";
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/shop" element={<Shop />} />
           </Routes>
         </main>
         <Footer />

@@ -63,7 +63,7 @@ const CustomizationOptions = ({
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default CustomizationOptions
+export default CustomizationOptions;

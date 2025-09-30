@@ -1,37 +1,37 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { useParams, Link } from "react-router-dom"
-import { ArrowLeft, ShoppingCart, Heart, Star, Truck, Shield, RotateCcw } from "lucide-react"
-import { getProductById } from "../data/products"
-import { useCart } from "../context/CartContext"
-import CustomizationOptions from "../components/CustomizationOptions"
-import type { Product } from "../types"
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import { ArrowLeft, ShoppingCart, Heart, Star, Truck, Shield, RotateCcw } from "lucide-react";
+import { getProductById } from "../data/products";
+import { useCart } from "../context/CartContext";
+import CustomizationOptions from "../components/CustomizationOptions";
+import type { Product } from "../types";
 
 const ProductDetails = () => {
-  const { id } = useParams<{ id: string }>()
-  const { addToCart } = useCart()
-  const [product, setProduct] = useState<Product | null>(null)
-  const [selectedImage, setSelectedImage] = useState(0)
-  const [selectedSize, setSelectedSize] = useState<string>("")
-  const [selectedColor, setSelectedColor] = useState<string>("")
-  const [quantity, setQuantity] = useState(1)
-  const [isWishlisted, setIsWishlisted] = useState(false)
+  const { id } = useParams<{ id: string }>();
+  const { addToCart } = useCart();
+  const [product, setProduct] = useState<Product | null>(null);
+  const [selectedImage, setSelectedImage] = useState(0);
+  const [selectedSize, setSelectedSize] = useState<string>("");
+  const [selectedColor, setSelectedColor] = useState<string>("");
+  const [quantity, setQuantity] = useState(1);
+  const [isWishlisted, setIsWishlisted] = useState(false);
 
   useEffect(() => {
     if (id) {
-      const foundProduct = getProductById(id)
-      setProduct(foundProduct || null)
+      const foundProduct = getProductById(id);
+      setProduct(foundProduct || null);
 
       // Set default selections
       if (foundProduct?.sizes && foundProduct.sizes.length > 0) {
-        setSelectedSize(foundProduct.sizes[0])
+        setSelectedSize(foundProduct.sizes[0]);
       }
       if (foundProduct?.colors && foundProduct.colors.length > 0) {
-        setSelectedColor(foundProduct.colors[0])
+        setSelectedColor(foundProduct.colors[0]);
       }
     }
-  }, [id])
+  }, [id]);
 
   if (!product) {
     return (
@@ -48,11 +48,11 @@ const ProductDetails = () => {
           </Link>
         </div>
       </div>
-    )
+    );
   }
 
   const handleAddToCart = () => {
-    addToCart(product, quantity, selectedSize, selectedColor)
+    addToCart(product, quantity, selectedSize, selectedColor);
   }
 
   return (
@@ -243,7 +243,7 @@ const ProductDetails = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default ProductDetails

@@ -24,7 +24,7 @@ interface FormData {
 }
 
 const Checkout = () => {
-  const { items, getTotalItems, getTotalPrice, clearCart } = useCart();
+  const { items, getTotalPrice, clearCart } = useCart();
   const navigate = useNavigate();
   const [isProcessing, setIsProcessing] = useState(false);
   const [formData, setFormData] = useState<FormData>({

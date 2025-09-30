@@ -1,5 +1,3 @@
-"use client"
-
 import { Link } from "react-router-dom";
 import { ArrowLeft, ShoppingBag } from "lucide-react";
 import { useCart } from "../context/CartContext";

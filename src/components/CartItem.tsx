@@ -1,5 +1,3 @@
-"use client"
-
 import { Link } from "react-router-dom";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import type { CartItem as CartItemType } from "../types";

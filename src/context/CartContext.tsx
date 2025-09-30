@@ -1,4 +1,3 @@
-"use client";
 import type React from "react"
 import  { createContext, useContext, useReducer, type ReactNode } from "react";
 import type { CartItem, Product, CartContextType } from "../types";

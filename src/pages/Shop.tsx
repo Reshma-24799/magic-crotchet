@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useMemo } from "react";
 import { Filter, Grid, List, ChevronDown } from "lucide-react";
 import ProductCard from "../components/ProductCard";

@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom"
 import { ArrowRight, Star, Truck, Shield, Heart } from "lucide-react"
-//import ProductCard from "../components/ProductCard"
-//import { getFeaturedProducts, getBestsellingProducts } from "../data/products" 
+import ProductCard from "../components/ProductCard"
+import { getFeaturedProducts, getBestsellingProducts } from "../data/products" 
 
 const Home = () => {
-    //const featuredProducts = getFeaturedProducts();
-    //const bestSellingProducts = getBestsellingProducts();
+    const featuredProducts = getFeaturedProducts();
+    const bestSellingProducts = getBestsellingProducts();
 
     return(
         <div className="min-h-screen">
@@ -101,9 +101,9 @@ const Home = () => {
                         </p>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                         {/* {featuredProducts.map((product) => (
+                         {featuredProducts.map((product) => (
                             <ProductCard key={product.id} product={product} />
-                        ))} */}
+                        ))}
                     </div>
                     <div className="text-center">
                         <Link
@@ -126,9 +126,9 @@ const Home = () => {
                         </p>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {/* {bestsellingProducts.map((product) => (
-                                <ProductCard key={product.id} product={product} />
-                        ))} */}
+                        {bestSellingProducts.map((product) => (
+                            <ProductCard key={product.id} product={product} />
+                        ))}
                     </div>
                 </div>
             </section>

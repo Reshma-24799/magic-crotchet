@@ -1,5 +1,3 @@
-"use client"
-
 import { Link, useLocation } from "react-router-dom";
 import { ShoppingCart, Search, Menu, X } from "lucide-react";
 import { useState } from "react";

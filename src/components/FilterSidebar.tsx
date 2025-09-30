@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { ChevronDown, ChevronUp, X } from "lucide-react";
 import type { CategoryFilter } from "../types";

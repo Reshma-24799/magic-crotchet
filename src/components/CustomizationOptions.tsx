@@ -1,5 +1,3 @@
-"use client"
-
 interface CustomizationOptionsProps {
   sizes?: string[]
   colors?: string[]

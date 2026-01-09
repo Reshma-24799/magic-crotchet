@@ -1,6 +1,7 @@
 import type React from "react"
-import  { createContext, useContext, useReducer, type ReactNode } from "react";
+import { createContext, useContext, useReducer, useEffect, type ReactNode } from "react";
 import type { CartItem, Product, CartContextType } from "../types";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 interface CartState {
     items: CartItem[];
@@ -63,8 +64,18 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
     }
 }
 
-export const CartProvider: React.FC<{children: ReactNode}> = ({children}) => {
-    const [state, dispatch] = useReducer(cartReducer, { items: []});
+export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+    // Use the custom hook to manage persistence
+    // We expect the hook to return the stored state (or default) and a setter
+    const [savedCart, setSavedCart] = useLocalStorage<CartState>("cart-storage", { items: [] });
+
+    // Initialize the reducer with the saved cart state
+    const [state, dispatch] = useReducer(cartReducer, savedCart);
+
+    // Sync reducer state back to local storage whenever it changes
+    useEffect(() => {
+        setSavedCart(state);
+    }, [state, setSavedCart]);
 
     const addToCart = (product: Product, quantity:number = 1, size?: string, color?: string) => {
         dispatch({type: "ADD_TO_CART", payload: { product, quantity, size, color }});

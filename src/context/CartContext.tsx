@@ -1,5 +1,5 @@
 import type React from "react"
-import { createContext, useContext, useReducer, useEffect, type ReactNode } from "react";
+import { createContext, useContext, useReducer, useEffect, type ReactNode, useMemo, useCallback } from "react";
 import type { CartItem, Product, CartContextType } from "../types";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
@@ -75,25 +75,31 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         setSavedCart(state);
     }, [state, setSavedCart]);
 
-    const addToCart = (product: Product, quantity:number = 1, size?: string, color?: string) => {
-        dispatch({type: "ADD_TO_CART", payload: { product, quantity, size, color }});
-    };
-    const removeFromCart = (productId: string) => {
+    const addToCart = useCallback((product: Product, quantity: number = 1, size?: string, color?: string) => {
+        dispatch({ type: "ADD_TO_CART", payload: { product, quantity, size, color } });
+    }, [dispatch]);
+
+    const removeFromCart = useCallback((productId: string) => {
         dispatch({ type: "REMOVE_FROM_CART", payload: { productId } })
-    };
-    const updateQuantity = (productId: string, quantity: number) => {
+    }, [dispatch]);
+
+    const updateQuantity = useCallback((productId: string, quantity: number) => {
         dispatch({ type: "UPDATE_QUANTITY", payload: { productId, quantity } })
-    };
-    const clearCart = () => {
+    }, [dispatch]);
+
+    const clearCart = useCallback(() => {
         dispatch({ type: "CLEAR_CART" })
-    };
-    const getTotalItems = () : number => {
-        return state.items.reduce((total, item) => total+item.quantity,0);
-    }
-    const getTotalPrice = () : number => {
+    }, [dispatch]);
+
+    const getTotalItems = useCallback((): number => {
+        return state.items.reduce((total, item) => total + item.quantity, 0);
+    }, [state.items]);
+
+    const getTotalPrice = useCallback((): number => {
         return state.items.reduce((total, item) => total + item.product.price * item.quantity, 0);
-    }
-    const value: CartContextType = {
+    }, [state.items]);
+
+    const value: CartContextType = useMemo(() => ({
         items: state.items,
         addToCart,
         removeFromCart,
@@ -101,7 +107,8 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         clearCart,
         getTotalItems,
         getTotalPrice
-    };
+    }), [state.items, addToCart, removeFromCart, updateQuantity, clearCart, getTotalItems, getTotalPrice]);
+
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }
 

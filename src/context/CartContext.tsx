@@ -65,8 +65,6 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
 }
 
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    // Use the custom hook to manage persistence
-    // We expect the hook to return the stored state (or default) and a setter
     const [savedCart, setSavedCart] = useLocalStorage<CartState>("cart-storage", { items: [] });
 
     // Initialize the reducer with the saved cart state

@@ -45,11 +45,14 @@ const Navbar = () => {
             ))}
           </div>
 
+          
           <div className="flex items-center space-x-4">
+
+            {/* Implement later */}
             {/* Search Icon */}
-            <button className="p-2 text-gray-600  hover:text-primary-500 transition-colors duration-200">
+            {/* <button className="p-2 text-gray-600  hover:text-primary-500 transition-colors duration-200">
               <Search className="w-5 h-5" />
-            </button>
+            </button> */}
             
             <Link to="/cart" className="relative p-2 text-gray-600 hover:text-primary-500 transition-colors duration-200">
               <ShoppingCart className="w-5 h-5" />
